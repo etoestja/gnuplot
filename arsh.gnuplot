@@ -56,12 +56,12 @@ set xlabel "Time, sec"
 set nokey
 set key bottom out horizontal
 set key nobox samplen 1 noenhanced noopaque
-unset ylabel
-set ytics 0.05
-set yrange [-0.08:0.08]
+set ylabel "%"
+set ytics 80
+set yrange [-100:100]
 plot [:] [:] \
-    DATAFILE using 1:6 title "P" smooth frequency linestyle 112,\
-    DATAFILE using 1:7 title "I" smooth frequency linestyle 113,\
-    DATAFILE using 1:8 title "D" smooth frequency linestyle 111
+    DATAFILE using 1:($6/0.05694*100) title "P" smooth frequency linestyle 112,\
+    DATAFILE using 1:($7/0.0364*100) title "I" smooth frequency linestyle 113,\
+    DATAFILE using 1:($8/0.0736*100) title "D" smooth frequency linestyle 111
  
 unset multiplot
