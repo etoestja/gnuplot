@@ -42,14 +42,9 @@ set yrange [-0.5:0.5]
 set key bottom right #at 10, 0.35 
 set key nobox samplen 1 noenhanced noopaque
 
-set y2tics 15
-set y2range [-25:25]
-set y2label "radians/sec" offset -2
-
 plot [:] [:] \
     DATAFILE u 1:9 t "Joystick" smooth frequency ls 113,\
-    DATAFILE using 1:3 title "Angle" smooth frequency linestyle 112,\
-    DATAFILE using 1:2 title "Angular velocity" smooth frequency linestyle 111 axes x1y2
+    DATAFILE using 1:3 title "Angle" smooth frequency linestyle 112
 
 
 unset y2tics
