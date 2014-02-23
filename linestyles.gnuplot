@@ -20,3 +20,6 @@ set style line 230 linecolor 3 linewidth 0.5 pointtype 0 pointsize 2
 set style line 231 linecolor 3 linewidth 0.5 pointtype 1 pointsize 2
 set style line 235 linecolor 3 linewidth 0.5 pointtype 6 pointsize 2
 set style line 23  linecolor 3 linewidth 1.0 pointtype 6 pointsize 2
+
+set style line 6 linecolor 0 linewidth 7 linetype 0 pointtype 1
+
