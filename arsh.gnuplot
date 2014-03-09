@@ -22,8 +22,6 @@ set size 1, 1.05
 set origin 0.0, -0.05
 
 set border 15
-set xtics nomirror 6,1,9 scale 0.5
-set xlabel "Time, sec" offset 0,3.5
  
 set multiplot layout 3,1 title "I-component during takeoff\n"
  
@@ -69,7 +67,7 @@ unset xlabel
 set nokey
 set key bottom out horizontal
 set key nobox samplen 1 noenhanced noopaque
-set ylabel "PID components, %"
+set ylabel "PID components, %" offset 1,0
 set ytics 80
 set yrange [-120:120]
 
@@ -82,19 +80,20 @@ plot [:] [:] \
 
 unset arrow
 
+set xtics nomirror 6,1,9 scale 0.5
+set xlabel "Time, sec" offset 0,1.5
 set ylabel "Volts" offset 2
 set ytics 5 nomirror
 set yrange [10:16]
-set key bottom right #at 10, 0.35 
 set key nobox samplen 1 noenhanced noopaque
-set y2tics 0.4 offset -1
-set y2range [0:1]
+set y2tics 40 offset -1
+set y2range [0:100]
 set y2label "Throttle, %" offset -3
 
 set arrow from 7.25,10 to 7.25,16 nohead ls 6
 set arrow from 7.95,10 to 7.95,16 nohead ls 6
 plot [:] [:] \
     DATAFILE u 1:12 t "Voltage" smooth frequency ls 113,\
-    DATAFILE using 1:11 title "Throttle" smooth frequency linestyle 111 axes x1y2
+    DATAFILE using 1:($11*100) title "Throttle" smooth frequency linestyle 111 axes x1y2
 unset multiplot
 
