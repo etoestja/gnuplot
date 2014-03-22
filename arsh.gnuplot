@@ -25,7 +25,7 @@ set border 15
 set xtics nomirror 0,1,15 scale 0.5
 set xlabel "Time, sec"
  
-set multiplot layout 2,1 title "PID example\n"
+set multiplot layout 2,1 title "PID example (poor tuning)\n"
  
 unset title 
 set style data boxes
@@ -38,12 +38,6 @@ set timefmt "%S"
 set ylabel "Angle, radians" offset 2
 set ytics 0.3 nomirror
 set yrange [-0.5:0.5]
-set arrow from 1.325,-0.5 to 1.325,0.5 nohead ls 6
-set arrow from 2.025,-0.5 to 2.025,0.5 nohead ls 6
-set arrow from 2.625,-0.5 to 2.625,0.5 nohead ls 6
-set arrow from 3.525,-0.5 to 3.525,0.5 nohead ls 6
-set arrow from 4.125,-0.5 to 4.125,0.5 nohead ls 6
-set arrow from 5.525,-0.5 to 5.525,0.5 nohead ls 6
 set key bottom right #at 10, 0.35 
 set key nobox samplen 1 noenhanced noopaque
 set y2tics 15
@@ -74,17 +68,10 @@ set key nobox samplen 1 noenhanced noopaque
 set ylabel "PID components, %"
 set ytics 80
 set yrange [-100:100]
-set arrow from 1.325,-100 to 1.325,100 nohead ls 6
-set arrow from 2.025,-100 to 2.025,100 nohead ls 6
-set arrow from 2.625,-100 to 2.625,100 nohead ls 6
-set arrow from 3.525,-100 to 3.525,100 nohead ls 6
-set arrow from 4.125,-100 to 4.125,100 nohead ls 6
-set arrow from 5.525,-100 to 5.525,100 nohead ls 6
 plot [:] [:] \
     DATAFILE using 1:($6/0.05694*100) title "P" smooth frequency linestyle 112,\
     DATAFILE using 1:($7/0.0364*100) title "I" smooth frequency linestyle 113,\
-    DATAFILE using 1:($8/0.0736*100) title "D" smooth frequency linestyle 111,\
-    110 ls 6 t 'Big D'
+    DATAFILE using 1:($8/0.0736*100) title "D" smooth frequency linestyle 111
 
 unset multiplot
 
