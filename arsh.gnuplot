@@ -1,6 +1,6 @@
 #!/usr/bin/gnuplot -persist
  
-set term postscript enhanced color portrait size 8,8 solid
+set term postscript enhanced color portrait size 8,4 solid
 set output "./a.eps"
 
 #set term tikz standalone solid fontscale 1 size 20cm, 15cm
@@ -22,69 +22,27 @@ set size 1, 1.05
 set origin 0.0, -0.05
 
 set border 15
-set xtics nomirror 0,1,15 scale 0.5
-set xlabel "Time, sec"
- 
-set multiplot layout 2,1 title "PID example\n"
+set xtics nomirror 1,1,12 scale 0.5 offset -0.2,2
+set xlabel "Time, sec" offset 0, 1.97
+
+set multiplot layout 1,1 title "D equation comparison\n"
  
 unset title 
 set style data boxes
  
 set xzeroaxis linewidth 1 linetype 1 linecolor 0
-set xrange [0.75:12.75]
+set xrange [0:13.3]
  
 set timefmt "%S"
  
 set ylabel "Angle, radians" offset 2
-set ytics 0.3 nomirror
-set yrange [-0.5:0.5]
-set arrow from 1.325,-0.5 to 1.325,0.5 nohead ls 6
-set arrow from 2.025,-0.5 to 2.025,0.5 nohead ls 6
-set arrow from 2.625,-0.5 to 2.625,0.5 nohead ls 6
-set arrow from 3.525,-0.5 to 3.525,0.5 nohead ls 6
-set arrow from 4.125,-0.5 to 4.125,0.5 nohead ls 6
-set arrow from 5.525,-0.5 to 5.525,0.5 nohead ls 6
-set key bottom right #at 10, 0.35 
+set ytics 1 nomirror
+set yrange [-1.5:1.5]
+set key top right #at 10, 0.35 
 set key nobox samplen 1 noenhanced noopaque
-set y2tics 15
-set y2range [-25:25]
-set y2label "Angular velocity, radians/sec" offset -1.85
 
 plot [:] [:] \
-    DATAFILE u 1:9 t "Joystick" smooth frequency ls 113,\
-    DATAFILE using 1:3 title "Angle" smooth frequency linestyle 112,\
-    DATAFILE using 1:2 title "Angular velocity" smooth frequency linestyle 101 axes x1y2
-
-unset y2tics
-unset y2label
-
-set x2tics in format ""
-set x2tics nomirror 0,1,15 scale 0.5
- 
-unset border
-set border 15
-
-#set xtics nomirror
-#set xlabel "Time, sec"
-unset xtics
-unset xlabel
-set nokey
-set key bottom out horizontal
-set key nobox samplen 1 noenhanced noopaque
-set ylabel "PID components, %"
-set ytics 80
-set yrange [-100:100]
-set arrow from 1.325,-100 to 1.325,100 nohead ls 6
-set arrow from 2.025,-100 to 2.025,100 nohead ls 6
-set arrow from 2.625,-100 to 2.625,100 nohead ls 6
-set arrow from 3.525,-100 to 3.525,100 nohead ls 6
-set arrow from 4.125,-100 to 4.125,100 nohead ls 6
-set arrow from 5.525,-100 to 5.525,100 nohead ls 6
-plot [:] [:] \
-    DATAFILE using 1:($6/0.05694*100) title "P" smooth frequency linestyle 112,\
-    DATAFILE using 1:($7/0.0364*100) title "I" smooth frequency linestyle 113,\
-    DATAFILE using 1:($8/0.0736*100) title "D" smooth frequency linestyle 111,\
-    110 ls 6 t 'Big D'
-
-unset multiplot
+    DATAFILE u 1:2 t "Joystick" smooth frequency ls 113,\
+    DATAFILE using 1:3 title "D = e0 - e" smooth frequency linestyle 112,\
+    DATAFILE using 1:4 title "D = v0 - v" smooth frequency linestyle 111
 
